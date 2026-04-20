@@ -82,7 +82,7 @@ function MenuAction({ label, description, icon: Icon, onClick, href, external = 
     <Button
       type="button"
       variant="ghost"
-      className={cn("h-auto", className)}
+      className={cn("h-auto whitespace-normal border-0", className)}
       onClick={onClick}
     >
       {content}
@@ -207,7 +207,7 @@ export function SidebarAccountMenu({
                   type="button"
                   variant="ghost"
                   className={cn(
-                    "flex h-auto w-full items-start justify-start gap-3 rounded-xl px-3 py-3 text-left hover:bg-destructive/10",
+                    "flex h-auto w-full items-start justify-start gap-3 whitespace-normal rounded-xl border-0 px-3 py-3 text-left hover:bg-destructive/10",
                     signOutMutation.isPending && "cursor-not-allowed opacity-60",
                   )}
                   onClick={() => signOutMutation.mutate()}
