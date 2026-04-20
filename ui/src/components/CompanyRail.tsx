@@ -30,6 +30,8 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 import type { Company } from "@paperclipai/shared";
 import { CompanyPatternIcon } from "./CompanyPatternIcon";
 
@@ -236,19 +238,21 @@ export function CompanyRail() {
       </div>
 
       {/* Separator before add button */}
-      <div className="w-8 h-px bg-border mx-auto shrink-0" />
+      <Separator className="w-8 mx-auto shrink-0" />
 
       {/* Add company button */}
       <div className="flex items-center justify-center py-2 shrink-0">
         <Tooltip delayDuration={300}>
           <TooltipTrigger asChild>
-            <button
+            <Button
+              variant="outline"
+              size="icon"
               onClick={() => openOnboarding()}
-              className="flex items-center justify-center w-11 h-11 rounded-[22px] hover:rounded-[14px] border-2 border-dashed border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground transition-[border-color,color,border-radius] duration-150"
+              className="size-11 rounded-[22px] border-2 border-dashed border-border bg-transparent text-muted-foreground transition-[border-color,color,border-radius] duration-150 hover:rounded-[14px] hover:border-foreground/30 hover:bg-transparent hover:text-foreground dark:bg-transparent dark:hover:bg-transparent"
               aria-label="Add company"
             >
               <Plus className="h-5 w-5" />
-            </button>
+            </Button>
           </TooltipTrigger>
           <TooltipContent side="right" sideOffset={8}>
             <p>Add company</p>
