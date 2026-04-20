@@ -2,6 +2,7 @@ import { NavLink } from "@/lib/router";
 import { SIDEBAR_SCROLL_RESET_STATE } from "../lib/navigation-scroll";
 import { cn } from "../lib/utils";
 import { useSidebar } from "../context/SidebarContext";
+import { buttonVariants } from "@/components/ui/button";
 import type { LucideIcon } from "lucide-react";
 
 interface SidebarNavItemProps {
@@ -41,7 +42,8 @@ export function SidebarNavItem({
       onClick={() => { if (isMobile) setSidebarOpen(false); }}
       className={({ isActive }) =>
         cn(
-          "flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium transition-colors",
+          buttonVariants({ variant: "ghost" }),
+          "h-auto w-full justify-start gap-2.5 rounded-md px-3 py-2 text-[13px] font-medium",
           isActive
             ? "bg-accent text-foreground"
             : "text-foreground/80 hover:bg-accent/50 hover:text-foreground",
