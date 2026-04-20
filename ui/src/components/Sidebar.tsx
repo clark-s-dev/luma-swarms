@@ -11,6 +11,7 @@ import {
   Boxes,
   Repeat,
   Settings,
+  Paperclip,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { SidebarSection } from "./SidebarSection";
@@ -49,8 +50,9 @@ export function Sidebar() {
 
   return (
     <aside className="w-60 h-full min-h-0 border-r border-border bg-background flex flex-col">
-      {/* Top bar: Company name (bold) + Search — aligned with top sections (no visible border) */}
+      {/* Top bar: Paperclip icon + Company name (bold) + Search — aligned with top sections (no visible border) */}
       <div className="flex items-center gap-1 px-3 h-12 shrink-0">
+        <Paperclip className="h-5 w-5 shrink-0 text-foreground" aria-hidden="true" />
         <SidebarCompanyMenu />
         <Button
           variant="ghost"
