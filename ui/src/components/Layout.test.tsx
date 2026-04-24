@@ -27,10 +27,6 @@ vi.mock("@/lib/router", () => ({
   useParams: () => ({ companyPrefix: "PAP" }),
 }));
 
-vi.mock("./CompanyRail", () => ({
-  CompanyRail: () => <div>Company rail</div>,
-}));
-
 vi.mock("./Sidebar", () => ({
   Sidebar: () => <div>Main company nav</div>,
 }));

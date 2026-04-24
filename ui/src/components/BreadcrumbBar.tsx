@@ -15,6 +15,7 @@ import {
 import { Fragment, useMemo } from "react";
 import { PluginSlotOutlet, usePluginSlots } from "@/plugins/slots";
 import { PluginLauncherOutlet, usePluginLaunchers } from "@/plugins/launchers";
+import { WorkspaceSwitcher } from "./WorkspaceSwitcher";
 
 type GlobalToolbarContext = { companyId: string | null; companyPrefix: string | null };
 
@@ -55,7 +56,9 @@ export function BreadcrumbBar() {
 
   if (breadcrumbs.length === 0) {
     return (
-      <div className="border-b border-border px-4 md:px-6 h-12 shrink-0 flex items-center justify-end">
+      <div className="border-b border-border px-4 md:px-6 h-12 shrink-0 flex items-center gap-2">
+        <WorkspaceSwitcher />
+        <div className="flex-1" />
         {globalToolbarSlots}
       </div>
     );
@@ -73,11 +76,17 @@ export function BreadcrumbBar() {
     </Button>
   );
 
+  const separator = (
+    <span aria-hidden="true" className="select-none text-lg text-muted-foreground/50 shrink-0">/</span>
+  );
+
   // Single breadcrumb = page title (uppercase)
   if (breadcrumbs.length === 1) {
     return (
-      <div className="border-b border-border px-4 md:px-6 h-12 shrink-0 flex items-center">
+      <div className="border-b border-border px-4 md:px-6 h-12 shrink-0 flex items-center gap-2">
         {menuButton}
+        <WorkspaceSwitcher />
+        {separator}
         <div className="min-w-0 overflow-hidden flex-1">
           <h1 className="text-sm font-semibold uppercase tracking-wider truncate">
             {breadcrumbs[0].label}
@@ -90,8 +99,10 @@ export function BreadcrumbBar() {
 
   // Multiple breadcrumbs = breadcrumb trail
   return (
-    <div className="border-b border-border px-4 md:px-6 h-12 shrink-0 flex items-center">
+    <div className="border-b border-border px-4 md:px-6 h-12 shrink-0 flex items-center gap-2">
       {menuButton}
+      <WorkspaceSwitcher />
+      {separator}
       <div className="min-w-0 overflow-hidden flex-1">
         <Breadcrumb className="min-w-0 overflow-hidden">
           <BreadcrumbList className="flex-nowrap">

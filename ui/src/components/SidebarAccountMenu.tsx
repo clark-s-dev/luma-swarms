@@ -18,6 +18,7 @@ import { useSidebar } from "../context/SidebarContext";
 import { useTheme } from "../context/ThemeContext";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
 import { cn } from "../lib/utils";
 
 const PROFILE_SETTINGS_PATH = "/instance/settings/profile";
@@ -64,7 +65,7 @@ function deriveUserSlug(name: string | null | undefined, email: string | null | 
 
 function MenuAction({ label, description, icon: Icon, onClick, href, external = false }: MenuActionProps) {
   const className =
-    "flex w-full items-start gap-3 rounded-xl px-3 py-3 text-left transition-colors hover:bg-accent/60";
+    "flex w-full justify-start items-start gap-3 rounded-xl px-3 py-3 text-left transition-colors hover:bg-accent/60";
 
   const content = (
     <>
@@ -95,9 +96,14 @@ function MenuAction({ label, description, icon: Icon, onClick, href, external = 
   }
 
   return (
-    <button type="button" className={className} onClick={onClick}>
+    <Button
+      type="button"
+      variant="ghost"
+      className={cn("h-auto whitespace-normal border-0", className)}
+      onClick={onClick}
+    >
       {content}
-    </button>
+    </Button>
   );
 }
 
@@ -144,9 +150,10 @@ export function SidebarAccountMenu({
     <div className="border-t border-r border-border bg-background px-3 py-2">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <button
+          <Button
             type="button"
-            className="flex w-full items-center gap-2.5 px-3 py-2 text-left text-[13px] font-medium text-foreground/80 transition-colors hover:bg-accent/50 hover:text-foreground"
+            variant="ghost"
+            className="h-auto w-full justify-start gap-2.5 rounded-md px-3 py-2 text-left text-[13px] font-medium text-foreground/80 hover:bg-accent/50 hover:text-foreground"
             aria-label="Open account menu"
           >
             <Avatar size="sm">
@@ -154,7 +161,7 @@ export function SidebarAccountMenu({
               <AvatarFallback>{initials}</AvatarFallback>
             </Avatar>
             <span className="min-w-0 flex-1 truncate">{displayName}</span>
-          </button>
+          </Button>
         </PopoverTrigger>
         <PopoverContent
           side="top"
@@ -162,8 +169,8 @@ export function SidebarAccountMenu({
           sideOffset={10}
           className="w-[var(--radix-popover-trigger-width)] overflow-hidden rounded-t-2xl rounded-b-none border-border p-0 shadow-2xl"
         >
-          <div className="h-24 bg-[linear-gradient(135deg,hsl(var(--primary))_0%,hsl(var(--accent))_55%,hsl(var(--muted))_100%)]" />
-          <div className="-mt-8 px-4 pb-4">
+          <div className="h-8 bg-[linear-gradient(135deg,hsl(var(--primary))_0%,hsl(var(--accent))_55%,hsl(var(--muted))_100%)]" />
+          <div className="-mt-3 px-2 pb-3">
             <div className="flex items-start gap-3">
               <div className="rounded-2xl border-4 border-popover bg-popover p-0.5 shadow-sm">
                 <Avatar size="lg">
@@ -225,10 +232,11 @@ export function SidebarAccountMenu({
                 }}
               />
               {deploymentMode === "authenticated" ? (
-                <button
+                <Button
                   type="button"
+                  variant="ghost"
                   className={cn(
-                    "flex w-full items-start gap-3 rounded-xl px-3 py-3 text-left transition-colors hover:bg-destructive/10",
+                    "flex h-auto w-full items-start justify-start gap-3 whitespace-normal rounded-xl border-0 px-3 py-3 text-left hover:bg-destructive/10",
                     signOutMutation.isPending && "cursor-not-allowed opacity-60",
                   )}
                   onClick={() => signOutMutation.mutate()}
@@ -245,7 +253,7 @@ export function SidebarAccountMenu({
                       End this browser session.
                     </span>
                   </span>
-                </button>
+                </Button>
               ) : null}
             </div>
           </div>

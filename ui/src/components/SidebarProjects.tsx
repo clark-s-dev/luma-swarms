@@ -27,6 +27,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { PluginSlotMount, usePluginSlots } from "@/plugins/slots";
 import type { Project } from "@paperclipai/shared";
 
@@ -84,7 +85,8 @@ function SortableProjectItem({
             if (isMobile) setSidebarOpen(false);
           }}
           className={cn(
-            "flex items-center gap-2.5 px-3 py-1.5 text-[13px] font-medium transition-colors",
+            buttonVariants({ variant: "ghost" }),
+            "h-auto w-full justify-start gap-2.5 rounded-md px-3 py-1.5 text-[13px] font-medium",
             activeProjectRef === routeRef || activeProjectRef === project.id
               ? "bg-accent text-foreground"
               : "text-foreground/80 hover:bg-accent/50 hover:text-foreground",
@@ -195,16 +197,18 @@ export function SidebarProjects() {
               Projects
             </span>
           </CollapsibleTrigger>
-          <button
+          <Button
+            variant="ghost"
+            size="icon-xs"
             onClick={(e) => {
               e.stopPropagation();
               openNewProject();
             }}
-            className="flex items-center justify-center h-4 w-4 rounded text-muted-foreground/60 hover:text-foreground hover:bg-accent/50 transition-colors"
+            className="size-4 rounded text-muted-foreground/60 hover:bg-accent/50 hover:text-foreground"
             aria-label="New project"
           >
             <Plus className="h-3 w-3" />
-          </button>
+          </Button>
         </div>
       </div>
 

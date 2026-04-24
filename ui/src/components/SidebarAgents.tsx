@@ -19,6 +19,7 @@ import {
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
+import { Button, buttonVariants } from "@/components/ui/button";
 import type { Agent } from "@paperclipai/shared";
 export function SidebarAgents() {
   const [open, setOpen] = useState(true);
@@ -85,16 +86,18 @@ export function SidebarAgents() {
               Agents
             </span>
           </CollapsibleTrigger>
-          <button
+          <Button
+            variant="ghost"
+            size="icon-xs"
             onClick={(e) => {
               e.stopPropagation();
               openNewAgent();
             }}
-            className="flex items-center justify-center h-4 w-4 rounded text-muted-foreground/60 hover:text-foreground hover:bg-accent/50 transition-colors"
+            className="size-4 rounded text-muted-foreground/60 hover:bg-accent/50 hover:text-foreground"
             aria-label="New agent"
           >
             <Plus className="h-3 w-3" />
-          </button>
+          </Button>
         </div>
       </div>
 
@@ -111,7 +114,8 @@ export function SidebarAgents() {
                   if (isMobile) setSidebarOpen(false);
                 }}
                 className={cn(
-                  "flex items-center gap-2.5 px-3 py-1.5 text-[13px] font-medium transition-colors",
+                  buttonVariants({ variant: "ghost" }),
+                  "h-auto w-full justify-start gap-2.5 rounded-md px-3 py-1.5 text-[13px] font-medium",
                   activeAgentId === agentRouteRef(agent)
                     ? "bg-accent text-foreground"
                     : "text-foreground/80 hover:bg-accent/50 hover:text-foreground"

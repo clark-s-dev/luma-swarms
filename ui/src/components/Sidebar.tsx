@@ -12,6 +12,7 @@ import {
   Repeat,
   GitBranch,
   Settings,
+  Paperclip,
 } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import { SidebarSection } from "./SidebarSection";
@@ -56,14 +57,16 @@ export function Sidebar() {
 
   return (
     <aside className="w-60 h-full min-h-0 border-r border-border bg-background flex flex-col">
-      {/* Top bar: Company name (bold) + Search — aligned with top sections (no visible border) */}
+      {/* Top bar: Paperclip icon + Company name (bold) + Search — aligned with top sections (no visible border) */}
       <div className="flex items-center gap-1 px-3 h-12 shrink-0">
+        <Paperclip className="h-5 w-5 shrink-0 text-foreground" aria-hidden="true" />
         <SidebarCompanyMenu />
         <Button
           variant="ghost"
           size="icon-sm"
-          className="text-muted-foreground shrink-0"
+          className="shrink-0 rounded-md text-muted-foreground"
           onClick={openSearch}
+          aria-label="Search"
         >
           <Search className="h-4 w-4" />
         </Button>
@@ -72,13 +75,14 @@ export function Sidebar() {
       <nav className="flex-1 min-h-0 overflow-y-auto scrollbar-auto-hide flex flex-col gap-4 px-3 py-2">
         <div className="flex flex-col gap-0.5">
           {/* New Issue button aligned with nav items */}
-          <button
+          <Button
+            variant="ghost"
             onClick={() => openNewIssue()}
-            className="flex items-center gap-2.5 px-3 py-2 text-[13px] font-medium text-muted-foreground hover:bg-accent/50 hover:text-foreground transition-colors"
+            className="h-auto w-full justify-start gap-2.5 rounded-md px-3 py-2 text-[13px] font-medium text-muted-foreground hover:text-foreground"
           >
             <SquarePen className="h-4 w-4 shrink-0" />
             <span className="truncate">New Issue</span>
-          </button>
+          </Button>
           <SidebarNavItem to="/dashboard" label="Dashboard" icon={LayoutDashboard} liveCount={liveRunCount} />
           <SidebarNavItem
             to="/inbox"
